@@ -1,0 +1,32 @@
+/* Estilo para los botones de navegación */
+.py-2 {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin: 0 5px;
+  border-radius: 4px;
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+p-galleria {
+  margin: 20px auto;
+}
+
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

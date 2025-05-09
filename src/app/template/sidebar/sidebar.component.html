@@ -1,0 +1,33 @@
+
+<!-- Sección fija con solo los íconos -->
+<div class="sidebar-icons" [class.hidden]="visible" (mouseenter)="openSidebar()" (mouseleave)="hideSidebar()">
+  <ul>
+    <!-- Aquí estamos usando ngFor para iterar sobre iconsFixed -->
+    <li *ngFor="let icon of iconsFixed" (click)="toggleClick(icon)" [ngClass]="{'active': visible, 'inactive': !visible}">
+      <i [class]="icon.iconClass"></i>
+    </li>
+  </ul>
+</div>
+<!-- Sidebar de PrimeNG -->
+<p-sidebar
+  [(visible)]="visible"
+  [baseZIndex]="10000"
+  position="left"
+  [modal]="false"
+  [attr.inert]="!visible ? '' : null"
+  [showCloseIcon]="false"
+  [style]="{'top': '45px ' , 'width': '150px' }"
+>
+
+   <!-- Menú personalizado sin usar p-menu -->
+   <ul class="custom-menu">
+<!-- ahora -->
+<li *ngFor="let item of menuItems" (click)="onMenuItemClick(item)" class="custom-menu-item">
+
+      <i [ngClass]="item.icon"></i>
+      <span>{{ item.label }}</span>
+    </li>
+  </ul>
+
+
+</p-sidebar>

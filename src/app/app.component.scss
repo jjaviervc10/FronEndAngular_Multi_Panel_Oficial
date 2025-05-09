@@ -1,0 +1,65 @@
+.content{
+  display: flex;
+  //height: cla
+  display: flex;
+  height: calc(100vh - 120px); /* 100vh menos el header (60px) y el footer (60px) */
+  margin-top: 60px; /* Altura del header */
+  margin-bottom: 60px; /* Altura del footer */
+}
+
+/* Cuando estamos en la página de login, no se deben aplicar márgenes ni paddings extras */
+
+
+/*Contenido principal*/
+.main-content{
+  flex: 1;
+  margin-left: 50px;
+padding: 20px;
+  overflow-y: auto;
+background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+
+  height: 100vh;
+}
+/* Sidebar */
+app-sidebar {
+  height: 100%;
+ // background-color: #010811;
+ background: linear-gradient(135deg, #0f2027, #4f9ab3, #2c5364);
+  position: fixed;
+  top: 60px; /* Para colocarlo debajo del header */
+  left: 0;
+  z-index: 999;
+}
+
+
+/* Header */
+app-header {
+  height: 60px;
+  width: 100%;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  background: linear-gradient(135deg, #0f2027, #4f9ab3, #2c5364);
+  z-index: 999;
+  color: #cc0606;
+ // box-shadow: 0 -2px 5px rgba(46, 44, 44, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(23, 4, 192, 0.37);
+}
+/* Evitar que el sidebar, header y footer aparezcan en la página de login */
+body.login-page app-sidebar,
+body.login-page app-header,
+body.login-page app-footer {
+  display: none;
+}
+
+
+body.login-page {
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364) !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+

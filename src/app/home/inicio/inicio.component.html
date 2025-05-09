@@ -1,0 +1,28 @@
+
+<div class="card">
+     <!-- Contenedor de botones para cambiar las imágenes -->
+     <div class="py-2">
+      <p-button type="button" icon="pi pi-minus" (click)="prev()" label="Anterior"></p-button>
+      <p-button type="button" icon="pi pi-plus" (click)="next()" severity="secondary" styleClass="mr-2" label="Siguiente"></p-button>
+    </div>
+
+<!-- Componente Galleria de PrimeNG para mostrar las imágenes -->
+<p-galleria  [value]="images"  [responsiveOptions]="responsiveOptions"
+          [containerStyle]="{ 'max-width': '640px' }"
+          [numVisible]="5" [(activeIndex)]="activeIndex"
+          [style]="{ 'max-height': '400px' }">>
+  <!-- Plantilla para mostrar la imagen principal -->
+  <ng-template pTemplate="item" let-item>
+      <img [src]="item.src" style="width: 100%;height: auto;" />
+  </ng-template>
+
+
+  <!-- Plantilla para mostrar la miniatura de la imagen -->
+  <ng-template pTemplate="thumbnail" let-item>
+
+      <img [src]="item.thumbnailImageSrc"  style="height: 80px; object-fit: cover;"/>
+
+  </ng-template>
+
+</p-galleria>
+</div>

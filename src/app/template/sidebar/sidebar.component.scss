@@ -1,0 +1,46 @@
+/* Sección de íconos fija */
+.sidebar-icons {
+  position: fixed;
+  width: 90px;
+  height: 100%;
+  background: linear-gradient(135deg, #0f2027, #4f9ab3, #2c5364);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 20px;
+  z-index: 9999;
+ // box-shadow: 2px 0 5px rgba(235, 5, 5, 0.918);
+ box-shadow: 0 8px 32px 0 rgba(23, 4, 192, 0.37);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.sidebar-icons.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-10px);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  margin: 20px 0;
+  color: rgb(143, 1, 1); /* Color de los íconos */
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Sidebar desplegable */
+.diseñoSidebar {
+  height: 50%;
+  padding: 5px;
+  padding-top: 50px;
+ // transition: transform 0.3s ease;
+  box-shadow: 0 0 10px rgba(104, 6, 6, 0.5);
+  display: flex;
+}
+

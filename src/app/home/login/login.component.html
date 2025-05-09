@@ -1,0 +1,27 @@
+
+<div pFocusTrap class="login-container">
+  <div class="form-group">
+    <p-iconfield class="login-form">
+      <div>
+        <p-inputicon class="logos">
+          <i class="pi pi-user"></i>
+        </p-inputicon>
+      </div>
+      <input class="custom-input" type="text" pInputText id="usuario" [(ngModel)]="username"  placeholder="Usuario" />
+    </p-iconfield>
+  </div>
+
+  <div class="form-group">
+    <p-iconfield class="login-form">
+      <div>
+        <p-inputicon class="logos">
+          <i class="pi pi-key"></i>
+        </p-inputicon>
+      </div>
+      <input class="custom-input" style="padding-left:20px;" type="text" pInputText id="contraseña" [(ngModel)]="password"  placeholder="Contraseña" />
+    </p-iconfield>
+  </div>
+
+  <!-- Asegúrate de que el botón tenga un label visible -->
+  <button type="submit" label="submit" class="btn" styleClass="w-full" (click)="onLogin()">Iniciar sesión</button>
+</div>

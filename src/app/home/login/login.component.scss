@@ -1,0 +1,108 @@
+/* login.component.scss */
+
+.login-container {
+  display: flex;
+  flex-direction: column;  /* Distribute children vertically */
+ justify-content: center;
+  margin: 400px auto;          /* Center the container horizontally */
+  max-width: 400px;
+  padding: 100px;           /* Add padding inside the container */
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  box-shadow: 0 8px 32px 0 rgba(23, 4, 192, 0.37);
+
+  backdrop-filter: blur( 4px );
+  border-radius: 20px;
+}
+
+/* Agrupar cada input de forma vertical */
+.form-group {
+ display: flex;
+  border-radius: 20px;
+  flex-direction: column;
+  padding-bottom: 20px;
+  width: 100%;   /* Ensure that input fields take up full width */
+}
+
+/* Estilo para el checkbox y la etiqueta */
+.flex {
+  display: flex;
+  flex-direction: row;  /* Arrange checkbox and label in a row (horizontal) */
+  gap: 10px;            /* Add space between checkbox and label */
+  align-items: center;  /* Align checkbox and label in the center */
+}
+
+.login-form {
+  width: 100%;
+  max-width: 400px;
+  padding: 2rem;
+  border-radius: 8px;
+  display:contents;
+  align-items: center; /* Centra verticalmente el ícono y el input */
+  justify-content: center; /* Centra horizontalmente el ícono y el input */
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.btn {
+  width: auto;
+  padding: 25px;
+  background-color:  #99a8b8;
+  color: black;
+  font-size: 16px;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
+.p-button-label {
+  color: black !important; /* Define el color del texto en el botón */
+  font-size: 16px;
+}
+
+.btn:hover {
+  background-color: #1b68f8;
+}
+
+.input{
+  display: flex;
+  justify-content: center;  /* Centra el contenido horizontalmente */
+  align-items: center;
+}
+.logos {
+  display: flex;
+  justify-content: center;  /* Centra el contenido horizontalmente */
+  align-items: center;      /* Centra el contenido verticalmente */
+  height: 100%;
+  font-size:2rem;            /* Asegura que el div ocupe todo el alto disponible */
+   padding-bottom: 20px;
+   padding-top: 20px;
+   color: white;
+
+}
+
+.custom-input {
+  width: 400px; /* Cambia el tamaño como desees */
+  height: 40px;
+  font-size: 1.1rem;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+

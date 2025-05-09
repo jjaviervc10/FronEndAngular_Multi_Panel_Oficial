@@ -1,0 +1,130 @@
+<p>empresas works!</p>
+
+<p-table [value]="empresas" [paginator]="true" [responsive]="true" [rows]="10" [dataKey]="'idEmpresa'" editMode="row" [tableStyle]="{ 'min-width': '40rem' }">
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="idEmpresa" >Id empresa<p-sortIcon style ="color:white ;" field="idEmpresa"></p-sortIcon></th>
+      <th pSortableColumn="claveEmpresa" >Clave Empresa <p-sortIcon field="claveEmpresa"></p-sortIcon></th>
+      <th pSortableColumn="nombreEmpresa" >Nombre Empresa<p-sortIcon field="nombreEmpresa"></p-sortIcon></th>
+      <th pSortableColumn="activo" >Activo<p-sortIcon field="activo"></p-sortIcon></th>
+      <th pSortableColumn="fechaAlta">Fecha Alta<p-sortIcon  field="fechaAlta"></p-sortIcon></th>
+      <th pSortableColumn="fechaBaja">Fecha Baja<p-sortIcon  field="fechaBaja"></p-sortIcon></th>
+      <th pSortableColumn="fechaServidor">Fecha Servidor<p-sortIcon  field="fechaServidor"></p-sortIcon></th>
+
+      <th style ="color:white ;">Acciones</th>
+      <th style ="color:white ;">Accesos</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-empresa let-editing="editing" let-ri="roeIndex">
+    <tr [pEditableRow]="empresa">
+      <!-- Editar campos de la empresa -->
+
+      <td>
+        <p-cellEditor>
+         <ng-template pTemplate="input">
+             <input pInputText type="text" [(ngModel)]="empresa.idEmpresa">
+         </ng-template>
+         <ng-template pTemplate="output">
+           {{ empresa.idEmpresa}}
+         </ng-template>
+        </p-cellEditor>
+      </td>
+
+      <td>
+       <p-cellEditor>
+         <ng-template pTemplate="input">
+           <input pInputText type="text" [(ngModel)]="empresa.claveEmpresa">
+         </ng-template>
+         <ng-template pTemplate="output">
+           {{ empresa.claveEmpresa }}
+         </ng-template>
+       </p-cellEditor>
+      </td>
+
+     <td>
+      <p-cellEditor>
+       <ng-template pTemplate="input">
+         <input pInputText type="text" [(ngModel)]="empresa.nombreEmpresa">
+       </ng-template>
+       <ng-template pTemplate="output">
+         {{ empresa.nombreEmpresa }}
+       </ng-template>
+      </p-cellEditor>
+     </td>
+
+     <td>
+       <p-cellEditor>
+        <ng-template pTemplate="input">
+          <input pInputText type="text" [(ngModel)]="empresa.activo">
+        </ng-template>
+        <ng-template pTemplate="output">
+          {{ empresa.activo }}
+        </ng-template>
+       </p-cellEditor>
+      </td>
+
+      <td>
+       <p-cellEditor>
+        <ng-template pTemplate="input">
+          <input pInputText type="text" [(ngModel)]="empresa.fechaAlta">
+        </ng-template>
+        <ng-template pTemplate="output">
+          {{ empresa.fechaAlta }}
+        </ng-template>
+       </p-cellEditor>
+      </td>
+
+      <td>
+       <p-cellEditor>
+        <ng-template pTemplate="input">
+          <input pInputText type="text" [(ngModel)]="empresa.fechaBaja">
+        </ng-template>
+        <ng-template pTemplate="output">
+          {{ empresa.fechaBaja }}
+        </ng-template>
+       </p-cellEditor>
+      </td>
+
+      <td>
+       <p-cellEditor>
+        <ng-template pTemplate="input">
+          <input pInputText type="text" [(ngModel)]="empresa.fechaServidor">
+        </ng-template>
+        <ng-template pTemplate="output">
+          {{ empresa.fechaServidor}}
+        </ng-template>
+       </p-cellEditor>
+      </td>
+
+
+      <!-- Acciones -->
+      <td>
+        <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(empresa)" class="p-button-rounded p-button-text"></button>
+        <button *ngIf="editing" pButton pRipple type="button" label="Guardar" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(empresa)" class="p-button-rounded p-button-text p-button-success mr-2"></button>
+        <button *ngIf="editing" pButton pRipple type="button" label="Cancelar" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel()" class="p-button-rounded p-button-text p-button-danger"></button>
+
+      <!-- Botón para eliminar empresa, usa el id de la empresa -->
+        <button pButton label="Eliminar" icon="pi pi-trash" (click)="confirm($event, empresa.idEmpresa)"></button>
+
+      <!-- Popup de confirmación de PrimeNG -->
+          <p-confirmPopup #cp [target]="target" [message]="message" [icon]="icon"  class="custom-confirm-popup"
+          (accept)="onAccept()" (reject)="onReject()">
+            <ng-template #content let-message>
+              <div
+              class="flex flex-col items-center w-full gap-4 border-b border-surface-200 dark:border-surface-700 p-4 mb-4 pb-0"
+              >
+              <i  class="!text-6xl text-primary-500"></i>
+
+            </div>
+          </ng-template>
+        </p-confirmPopup>
+      </td>
+
+
+
+      <td>
+        <p-button label="Mostrar Diálogo" (onClick)="mostrarDialogo(empresa.idEmpresa)" icon="pi pi-user" class="p-button-rounded p-button-text"></p-button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
