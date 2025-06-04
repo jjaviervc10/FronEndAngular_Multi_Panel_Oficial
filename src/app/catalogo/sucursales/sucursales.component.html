@@ -1,1 +1,174 @@
-<p>sucursales works!</p>
+<p-toast ></p-toast>
+<p-table [value]="sucursales" [paginator]="true" [rows]="10" [rendered]="true" [responsive]="true"
+      [dataKey]="'idSucursal'" editMode="row">
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSoportableColumn="idSucursal">Id Sucursal</th>
+      <th pSortableColumn="Nombre Sucursal">Nombre Sucursal <p-sortIcon  style ="color:white ;" field="idSucursal"></p-sortIcon></th>
+      <th pSortableColumn="ciudad"> Ciudad <p-sortIcon field="ciudad"></p-sortIcon></th>
+      <th pSortableColumn="estado"> Estado <p-sortIcon field="estado"></p-sortIcon></th>
+      <th pSortableColumn="activo"> Activo <p-sortIcon field="activo"></p-sortIcon></th>
+      <th pSortableColumn="fechaAlta"> Fecha alta <p-sortIcon field="fechaAlta"></p-sortIcon></th>
+
+      <th style ="color:white ;">
+
+       <button pButton pRipple type="button" label="Crear Sucursal" (click)="abrirDialogo()" icon="pi pi-plus" class="p-button-rounded p-button-text"></button>
+      </th>
+
+    </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-sucursal let-editing="editing" let-ri="roeIndex">
+    <tr [pEditableRow]="sucursal">
+      <td>
+        <p-cellEditor>
+          <ng-template pTemplate="input">
+            <input pInputText  type="text" [(ngModel)]="sucursal.idSucursal">
+          </ng-template>
+          <ng-template pTemplate="output">
+            {{ sucursal.idSucursal }}
+          </ng-template>
+        </p-cellEditor>
+      </td>
+
+
+      <td>
+        <p-cellEditor>
+          <ng-template pTemplate="input">
+            <input pInputText  type="text" [(ngModel)]="sucursal.nombreSucursal">
+          </ng-template>
+          <ng-template pTemplate="output">
+            {{ sucursal.nombreSucursal }}
+          </ng-template>
+        </p-cellEditor>
+      </td>
+
+
+      <td>
+        <p-cellEditor>
+          <ng-template pTemplate="input">
+            <input pInputText  type="text" [(ngModel)]="sucursal.ciudad">
+          </ng-template>
+          <ng-template pTemplate="output">
+            {{ sucursal.ciudad }}
+          </ng-template>
+        </p-cellEditor>
+      </td>
+
+      <td>
+        <p-cellEditor>
+          <ng-template pTemplate="input">
+            <input pInputText  type="text" [(ngModel)]="sucursal.estado">
+          </ng-template>
+          <ng-template pTemplate="output">
+            {{ sucursal.estado }}
+          </ng-template>
+        </p-cellEditor>
+      </td>
+
+      <td>
+        <p-cellEditor>
+          <ng-template pTemplate="input">
+            <input pInputText  type="text" [(ngModel)]="sucursal.activo">
+          </ng-template>
+          <ng-template pTemplate="output">
+            {{ sucursal.activo }}
+          </ng-template>
+        </p-cellEditor>
+      </td>
+
+      <td>
+        <p-cellEditor>
+          <ng-template pTemplate="input">
+            <input pInputText  type="text" [(ngModel)]="sucursal.fechaAlta">
+          </ng-template>
+          <ng-template pTemplate="output">
+            {{ sucursal.fechaAlta | date: 'MM/dd/yy'}}
+          </ng-template>
+        </p-cellEditor>
+      </td>
+
+
+         <!-- Acciones -->
+      <td>
+        <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(sucursal)" class="p-button-rounded p-button-text"></button>
+        <button *ngIf="editing" pButton pRipple type="button" label="Guardar" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(sucursal)" class="p-button-rounded p-button-text p-button-success mr-2"></button>
+        <button *ngIf="editing" pButton pRipple type="button" label="Cancelar" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel()" class="p-button-rounded p-button-text p-button-danger"></button>
+
+      <!-- Botón para eliminar empresa, usa el id de la empresa -->
+        <button pButton label="Eliminar" icon="pi pi-trash" (click)="confirm($event, sucursal.idSucursal)"></button>
+
+      <!-- Popup de confirmación de PrimeNG -->
+          <p-confirmPopup #cp [target]="target" [message]="message" [icon]="icon"  class="custom-confirm-popup"
+            (accept)="onAccept()" (reject)="onReject()">
+            <ng-template #content let-message>
+              <div class="flex flex-col items-center w-full gap-4 border-b border-surface-200 dark:border-surface-700 p-4 mb-4 pb-0">
+
+                <i class="pi pi-exclamation-triangle text-6xl text-primary-500"></i>
+
+                <p>{{ message }}</p>
+              </div>
+           </ng-template>
+         </p-confirmPopup>
+      </td>
+
+    </tr>
+
+  </ng-template>
+
+</p-table>
+
+<!-- Dialog para crear una nueva Sucursal -->
+
+<p-dialog  header="Crear Sucursal" [(visible)]="mostrarDialogoSucursal"  [modal] = "true" [style]="{width: '400px'}" [closable]="false">
+
+  <div class="p-fluid">
+    <div class="p-field">
+      <label for="nombreSucursal">Nombre Sucursal</label>
+      <input id="nombreSucursal" type="text" pInputText [(ngModel)]="nuevaSucursal.nombreSucursal" />
+    </div>
+
+    <div class="p-field">
+      <label for="ciudad">Ciudad</label>
+      <input id="ciudad" type="text" pInputText [(ngModel)]="nuevaSucursal.ciudad" />
+    </div>
+
+    <br>
+    <div class="p-field-checkbox">
+      <p-checkbox
+        id="activo"
+        [(ngModel)]="nuevaSucursal.activo"
+        [binary]="true">
+      </p-checkbox>
+      <label for="activo">Activo</label>
+
+    </div >
+
+    <br>
+    <div class="p-field">
+      <label for="estado" > Estado </label>
+      <input id="estado" type="text" pInputText [(ngModel)]="nuevaSucursal.estado" />
+    </div>
+
+    <br>
+    <div class="p-field">
+      <p-dropdown
+        [options]="empresas"
+        appendTo="body"
+        [(ngModel)]="nuevaSucursal.idEmpresa"
+        optionLabel="nombreEmpresa"
+        optionValue="idEmpresa"
+        placeholder="Selecciona una empresa"
+        [showClear]="true">
+      </p-dropdown>
+
+    </div>
+
+  </div>
+
+  <p-footer>
+    <button pButton label="Guardar" (click)="crearSucursal()" icon="pi pi-check" class="p-button-success"></button>
+    <button pButton label="Cancelar"  (click)="mostrarDialogoSucursal=false" icon="pi pi-times"  class="p-button-secondary"></button>
+  </p-footer>
+
+</p-dialog>

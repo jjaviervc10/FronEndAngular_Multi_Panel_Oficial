@@ -1,23 +1,24 @@
 
 <header>
   <div class="header-container">
-  <div *ngIf="usuario; else notLoggedIn"  class="user-info">
-  <!--  <img [src]="usuario.fotoPerfil" alt="Foto de perfil" class="profile-pic">-->
-  <span style="display: flex; justify-content: flex-end;">{{ usuario.nombreCompleto }}</span>
+    <div *ngIf="usuario; else notLoggedIn"  class="user-info">
+      <!--  <img [src]="usuario.fotoPerfil" alt="Foto de perfil" class="profile-pic">-->
+      <span style="display: flex; justify-content: flex-end;">{{ usuario.nombreCompleto }}</span>
 
-  <p-avatar
-  label=" {{ usuario.sub}}"
-  styleClass="mr-2"
-  size="large"
-  [style]="{  width: '55px',
-  height: '55px',
-  'font-size': '1.2rem','background-color': '#ece9fc', color: '#2a1261' }"
-  shape="circle" />
-  <!--   <span class="user-email">{{ usuario.usuario }}</span>-->
+      <p-avatar
+        [label]="usuario.sub"
 
+      styleClass="mr-2"
+      size="large"
+      [style]="{  width: '55px',
+      height: '55px',
+      'font-size': '1.2rem','background-color': '#ece9fc', color: '#2a1261' }"
+      shape="circle" />
+      <!--   <span class="user-email">{{ usuario.usuario }}</span>-->
+
+    </div>
+    <ng-template #notLoggedIn>
+      <span>No has iniciado sesión</span>
+    </ng-template>
   </div>
-  <ng-template #notLoggedIn>
-    <span>No has iniciado sesión</span>
-  </ng-template>
-</div>
 </header>

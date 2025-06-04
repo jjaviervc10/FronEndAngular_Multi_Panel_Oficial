@@ -29,6 +29,13 @@ import { ChipModule } from 'primeng/chip';
 import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
 import { TableModule } from 'primeng/table';  // Importamos TableModule
+import { SucursalesComponent } from './catalogo/sucursales/sucursales.component';
+import { DialogModule } from 'primeng/dialog';
+import { ConfirmPopupModule} from 'primeng/confirmpopup'
+import { DropdownModule } from 'primeng/dropdown';
+import { PerfilesComponent } from './catalogo/perfiles/perfiles.component';
+import { ToastModule } from 'primeng/toast';
+
 
 @NgModule({
   declarations: [
@@ -37,7 +44,10 @@ import { TableModule } from 'primeng/table';  // Importamos TableModule
     InicioComponent,
     SidebarComponent,
     HeaderComponent,
-    EmpresasComponent
+    EmpresasComponent,
+    SucursalesComponent,
+    PerfilesComponent
+
   ],
   imports: [
     PickListModule,
@@ -59,6 +69,10 @@ import { TableModule } from 'primeng/table';  // Importamos TableModule
     AvatarModule,
     AvatarGroupModule,
     TableModule,
+    DialogModule,
+    ConfirmPopupModule,
+    DropdownModule,
+    ToastModule,
 
   ],
   providers: [ConfirmationService,MessageService,AuthService, InactivityMonitorService],

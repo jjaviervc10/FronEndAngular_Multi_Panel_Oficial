@@ -17,7 +17,7 @@ interface AuthResponse {
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:8081/api/usuarios/login'; // Cambia esta URL según tu backend de Spring Boot
+  private apiUrl = 'http://localhost:9091/api/usuarios/login'; // Cambia esta URL según tu backend de Spring Boot
   private authStatus = new BehaviorSubject<boolean>(this.isAuthenticated());
 
   constructor(private http: HttpClient, private router: Router) {}

@@ -9,3 +9,10 @@ export interface EmpresaDTO{
   idUsuario:number;
 
 }
+
+export interface crearEmpresaDTO{
+ nombreEmpresa: string;
+  claveEmpresa: string;
+  activo: boolean;
+  idUsuario: number;
+}

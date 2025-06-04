@@ -12,3 +12,11 @@ export interface SucursalDTO{
   idEmpresa: number;
 
 }
+
+export interface crearSucursalDTO{
+  nombreSucursal:string;
+   ciudad : string;
+   estado : string;
+   activo: boolean;
+   idEmpresa : number;
+}

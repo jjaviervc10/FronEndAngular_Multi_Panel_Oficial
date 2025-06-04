@@ -27,13 +27,12 @@ iconsFixed = [
 ];
 
  // Definir los ítems del menú para PrimeNG
-
  menuItems: MenuItem[] = [
   { label: 'Empresas', icon: 'pi pi-briefcase',  command: () => this.router.navigate(['/empresas']) },
-  { label: 'Perfiles', icon: 'pi pi-user', command: () => console.log('Clic en Perfiles') },
-  { label: 'Sucursales', icon: 'pi pi-building', command: () => console.log('Clic en Sucursales') },
-  { label: 'Cerrar sesión', icon: 'pi pi-fw pi-sign-out',command:() => this.router.navigate(['/inicio']) },
-  { label: 'Inicio', icon: 'pi pi-home', command: () => console.log('Clic en Inicio') }
+  { label: 'Perfiles', icon: 'pi pi-user', command: () => this.router.navigate(['/perfiles'])},
+  { label: 'Sucursales', icon: 'pi pi-building', command: () => this.router.navigate(['/sucursales']) },
+  { label: 'Cerrar sesión', icon: 'pi pi-fw pi-sign-out',command:() => this.router.navigate(['/login']) },
+  { label: 'Inicio', icon: 'pi pi-home', command: () => this.router.navigate(['/inicio']) }
 ];
 
 
@@ -65,31 +64,22 @@ constructor(private router: Router, private authService: AuthService) {}
   hideSidebar() {
     this.visible = true; // Cierra el sidebar
   }
+  
+  onMenuItemClick(item: any) {
+    console.log('Item clicked:', item);
 
-  // Función para manejar el clic en un ítem del menú
- /* onMenuItemClick(event: any) {
-    // Para hacer la navegación del menú
-    console.log('Item clicked:', event);
-    event.preventDefault(); // Prevenir comportamiento por defecto
-    this.router.navigate([event.item.route]); // Navegar según la ruta especificada
-  }*/
-
-    onMenuItemClick(item: any) {
-      console.log('Item clicked:', item);
-
-      if (item.route) {
+    if (item.route) {
         this.router.navigate([item.route]);
-      } else if (item.command) {
+    } else if (item.command) {
         item.command();  // Ejecuta la función asociada, si no hay ruta
       }
-    }
+  }
 
    // Función de logout
- logout() {
-  console.log('Cerrando sesión...');
-  this.router.navigate(['/login']);  // Redirigir al login
-
-}
+  logout() {
+    console.log('Cerrando sesión...');
+    this.router.navigate(['/login']);  // Redirigir al login
+  }
 
   // Función para alternar el estado de "clicado" de un ícono fijo
   toggleClick(icon: any) {
@@ -117,16 +107,6 @@ openSidebar() {
   }, 3000);
 }
 
-/*private stopMonitoring(): void {
-  this.isMonitoring = false;
-  console.log(' Monitoreo DETENIDO');
-
-  if (this.timeout) {
-    clearTimeout(this.timeout);
-  }
-  window.removeEventListener('mousemove', this.resetTimeout);
-  window.removeEventListener('keydown', this.resetTimeout);
-}*/
  // Por limpieza
  ngOnDestroy(): void {
   ///this.routerSubscription?.unsubscribe();

@@ -1,5 +1,4 @@
-<p>empresas works!</p>
-
+<p-toast ></p-toast>
 <p-table [value]="empresas" [paginator]="true" [responsive]="true" [rows]="10" [dataKey]="'idEmpresa'" editMode="row" [tableStyle]="{ 'min-width': '40rem' }">
   <ng-template pTemplate="header">
     <tr>
@@ -11,8 +10,12 @@
       <th pSortableColumn="fechaBaja">Fecha Baja<p-sortIcon  field="fechaBaja"></p-sortIcon></th>
       <th pSortableColumn="fechaServidor">Fecha Servidor<p-sortIcon  field="fechaServidor"></p-sortIcon></th>
 
-      <th style ="color:white ;">Acciones</th>
-      <th style ="color:white ;">Accesos</th>
+      <th style ="color:white ;">
+
+
+        <button pButton pRipple type="button" label="Crear Empresa" (click)="abrirDialogo()" icon="pi pi-plus" class="p-button-rounded p-button-text"></button>
+      </th>
+
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-empresa let-editing="editing" let-ri="roeIndex">
@@ -69,7 +72,7 @@
           <input pInputText type="text" [(ngModel)]="empresa.fechaAlta">
         </ng-template>
         <ng-template pTemplate="output">
-          {{ empresa.fechaAlta }}
+          {{ empresa.fechaAlta | date: 'MM/dd/yy'}}
         </ng-template>
        </p-cellEditor>
       </td>
@@ -80,7 +83,7 @@
           <input pInputText type="text" [(ngModel)]="empresa.fechaBaja">
         </ng-template>
         <ng-template pTemplate="output">
-          {{ empresa.fechaBaja }}
+          {{ empresa.fechaBaja | date: 'MM/dd/yy'}}
         </ng-template>
        </p-cellEditor>
       </td>
@@ -113,8 +116,9 @@
               <div
               class="flex flex-col items-center w-full gap-4 border-b border-surface-200 dark:border-surface-700 p-4 mb-4 pb-0"
               >
-              <i  class="!text-6xl text-primary-500"></i>
 
+             <i class="pi pi-exclamation-triangle text-6xl text-primary-500"></i>
+             <p>{{ message }}</p>
             </div>
           </ng-template>
         </p-confirmPopup>
@@ -122,9 +126,42 @@
 
 
 
-      <td>
-        <p-button label="Mostrar Diálogo" (onClick)="mostrarDialogo(empresa.idEmpresa)" icon="pi pi-user" class="p-button-rounded p-button-text"></p-button>
-      </td>
+     <!--<td>
+        <button pButton pRipple type="button" label="Crear Empresa" (click)="abrirDialogo()" icon="pi pi-user" class="p-button-rounded p-button-text"></button>
+      </td>-->
     </tr>
   </ng-template>
 </p-table>
+
+<!-- Dialog para crear una nueva Empresa -->
+<p-dialog header="Crear Empresa" [(visible)]="mostrarDialogoEmpresa" [modal]="true" [style]="{width: '400px'}" [closable]="false">
+
+  <div class="p-fluid">
+    <div class="p-field">
+      <label for="nombreEmpresa">Nombre Empresa</label>
+      <input id="nombreEmpresa" type="text" pInputText [(ngModel)]="nuevaEmpresa.nombreEmpresa" />
+    </div>
+
+    <div class="p-field">
+      <label for="claveEmpresa">Clave Empresa</label>
+      <input id="claveEmpresa" type="text" pInputText [(ngModel)]="nuevaEmpresa.claveEmpresa" />
+    </div>
+
+
+    <div class="p-field-checkbox">
+        <p-checkbox
+          id="activo"
+          [(ngModel)]="nuevaEmpresa.activo"
+          [binary]="true">
+        </p-checkbox>
+        <label for="activo">Activo</label>
+    </div>
+
+  </div>
+
+  <p-footer>
+    <button pButton label="Guardar" (click)="crearEmpresa()" icon="pi pi-check" class="p-button-success"></button>
+    <button pButton label="Cancelar"  (click)="mostrarDialogoEmpresa=false" icon="pi pi-times"  class="p-button-secondary"></button>
+  </p-footer>
+
+</p-dialog>

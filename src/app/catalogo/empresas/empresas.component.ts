@@ -1,6 +1,6 @@
 import { Component , OnInit} from '@angular/core';
 import { EmpresaService } from '../../services/api/empresas.service';
-import { EmpresaDTO } from '../../models/EmpresaDTO';
+import { EmpresaDTO , crearEmpresaDTO} from '../../models/EmpresaDTO';
 import { ConfirmationService, MessageService} from 'primeng/api';
 @Component({
   selector: 'app-empresas',
@@ -8,12 +8,25 @@ import { ConfirmationService, MessageService} from 'primeng/api';
   styleUrl: './empresas.component.scss'
 })
 export class EmpresasComponent implements OnInit{
+
+ // nuevaEmpresa: EmpresaDTO[] = [];
   empresas: any[] = [];  // Para almacenar las empresas obtenidas de la API
   selectedEmpresa: EmpresaDTO | null = null; // Ahora usa EmpresaDTO
   originalEmpresa: EmpresaDTO | null = null;  // Para almacenar la empresa original antes de la edición
   modifyEmpresa: EmpresaDTO | null = null;  // Ahora usar EmpresaDTO
 
 
+  //Variable para controlar la visión del dialogo
+  mostrarDialogoEmpresa : boolean = false;
+
+  //Creacion de instancia apartir de EmpresaDTO
+
+  nuevaEmpresa: crearEmpresaDTO={
+    claveEmpresa : '',
+    nombreEmpresa : '',
+    activo: true,
+    idUsuario: 0
+  };
 
    // Variable para mostrar el confirm dialog
    displayConfirmation: boolean = false;
@@ -26,11 +39,7 @@ export class EmpresasComponent implements OnInit{
    icon: string = 'pi pi-exclamation-triangle'; // Aquí se asignará el icono
 
     // Inyecta el servicio de confirmación
-
-
-  constructor(private empresaService: EmpresaService, private confirmationService: ConfirmationService,
-    private messageService: MessageService) { }
-
+  constructor(private empresaService: EmpresaService, private confirmationService: ConfirmationService,private messageService: MessageService) { }
 
     ngOnInit(): void {
       this.empresaService.getEmpresas().subscribe(
@@ -54,13 +63,13 @@ export class EmpresasComponent implements OnInit{
     }
 
 
-  // Iniciar la edición de la fila
-  onRowEditInit(empresa: EmpresaDTO): void {
-    this.selectedEmpresa = { ...empresa }; // Copiar los datos de la empresa para editar
-    this.originalEmpresa = { ...empresa }; // Guardar el estado original
-    this.modifyEmpresa = { ...empresa };  // Copiar los datos para modificación
-    console.log('Iniciar edición de empresa:', empresa);
-  }
+    // Iniciar la edición de la fila
+    onRowEditInit(empresa: EmpresaDTO): void {
+        this.selectedEmpresa = { ...empresa }; // Copiar los datos de la empresa para editar
+        this.originalEmpresa = { ...empresa }; // Guardar el estado original
+        this.modifyEmpresa = { ...empresa };  // Copiar los datos para modificación
+        console.log('Iniciar edición de empresa:', empresa);
+    }
 
   // Cancelar la edición de la fila y restaurar los valores originales
   onRowEditCancel(): void {
@@ -68,6 +77,13 @@ export class EmpresasComponent implements OnInit{
       // Restaurar los datos originales de la empresa
       this.selectedEmpresa = { ...this.originalEmpresa };
       console.log('Edición cancelada, restaurados los datos originales:', this.selectedEmpresa);
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Éxito',
+        detail: 'Edición cancelada, restaurados los datos originales',
+        life: 2500,  // en milisegundos
+        styleClass: 'mi-toast-custom'
+      });
     }
   }
 
@@ -75,18 +91,16 @@ export class EmpresasComponent implements OnInit{
   onRowEditSave(empresa: EmpresaDTO): void {
     if (this.selectedEmpresa) {
 
-        // Verificar y convertir las fechas si es necesario
-    if (empresa.fechaAlta && !(empresa.fechaAlta instanceof Date)) {
-      empresa.fechaAlta = new Date(empresa.fechaAlta);
-    }
-    if (empresa.fechaBaja && !(empresa.fechaBaja instanceof Date) && empresa.fechaBaja !== null) {
-      empresa.fechaBaja = new Date(empresa.fechaBaja);
-    }
-    if (empresa.fechaServidor && !(empresa.fechaServidor instanceof Date)) {
-      empresa.fechaServidor = new Date(empresa.fechaServidor);
-    }
-
-
+      // Verificar y convertir las fechas si es necesario
+      if (empresa.fechaAlta && !(empresa.fechaAlta instanceof Date)) {
+        empresa.fechaAlta = new Date(empresa.fechaAlta);
+      }
+      if (empresa.fechaBaja && !(empresa.fechaBaja instanceof Date) && empresa.fechaBaja !== null) {
+        empresa.fechaBaja = new Date(empresa.fechaBaja);
+      }
+      if (empresa.fechaServidor && !(empresa.fechaServidor instanceof Date)) {
+        empresa.fechaServidor = new Date(empresa.fechaServidor);
+      }
 
       console.log('Datos editados que se van a guardar:', empresa);
 
@@ -94,7 +108,13 @@ export class EmpresasComponent implements OnInit{
       this.empresaService.updateEmpresa(empresa.idEmpresa, empresa).subscribe(
         (response) => {
           console.log('Empresa actualizada en el backend:', response);
-
+          this.messageService.add({
+          severity: 'success',
+          summary: 'Éxito',
+          detail: 'Empresa actualizada',
+          life: 2500,  // en milisegundos
+          styleClass: 'mi-toast-custom'
+        });
           // Aquí buscamos el índice de la empresa seleccionada en la lista
           const index = this.empresas.findIndex(emp => emp.idEmpresa === empresa.idEmpresa);
 
@@ -108,6 +128,13 @@ export class EmpresasComponent implements OnInit{
         },
         (error) => {
           console.error('Error al actualizar la empresa:', error);
+          this.messageService.add({
+          severity: 'warn',
+          summary: 'Advertencia',
+          detail: 'No se actualizo la empresa',
+          life: 2500,  // en milisegundos
+          styleClass: 'mi-toast-custom'
+          });
         }
       );
     }
@@ -117,6 +144,7 @@ export class EmpresasComponent implements OnInit{
     this.dialogVisible = true;
     this.idEmpresa = idEmpresa;
   }
+
 
  // Método que realiza la eliminación de la empresa
  eliminarEmpresa(idEmpresa: number) {
@@ -134,16 +162,14 @@ export class EmpresasComponent implements OnInit{
 }
 
 
-// En empresas.component.ts
-
-onReject() {
-  console.log('Acción de rechazo ejecutada');
-  this.dialogVisible = false;  // Aquí puedes controlar si quieres ocultar el diálogo
-}
-onAccept() {
-  console.log('Confirmación aceptada para eliminar la empresa con ID:', this.idEmpresa);
-  this.eliminarEmpresa(this.idEmpresa);
-}
+  onReject() {
+    console.log('Acción de rechazo ejecutada');
+    this.dialogVisible = false;  // Aquí puedes controlar si quieres ocultar el diálogo
+  }
+  onAccept() {
+    console.log('Confirmación aceptada para eliminar la empresa con ID:', this.idEmpresa);
+    this.eliminarEmpresa(this.idEmpresa);
+  }
 
 
 
@@ -165,42 +191,67 @@ onAccept() {
         severity: 'success',
         summary: 'Éxito',
         detail: 'Empresa eliminada con éxito',
-
+        life: 2500,  // en milisegundos
+        styleClass: 'mi-toast-custom'
       });
     },
     reject: () => {
       // Acción rechazada: mostrar mensaje de rechazo
       this.messageService.add({
         severity: 'error',
-        summary: 'Rechazado',
-        detail: 'La acción ha sido rechazada'
+        summary: 'Estatus: ',
+        detail: 'La acción ha sido rechazada',
+        life: 2500,  // en milisegundos
+        styleClass: 'mi-toast-custom'
       });
     }
   });
 }
 
-  // Opcional: evento que se ejecuta cuando hay un cambio
- /* onChange(event: any) {
-    console.log('onChange event triggered');
-    // Desmarcar los ítems seleccionados en ambas listas cuando se mueven
-    this.source.forEach(item => item.selected = false);
-    this.target.forEach(item => item.selected = false);
-    console.log('Elementos cambiados:', event);
+
+abrirDialogo() {
+  this.nuevaEmpresa = {
+    claveEmpresa: '',
+    nombreEmpresa: '',
+    activo: true,
+    idUsuario: 0,
+  }
+  this.mostrarDialogoEmpresa = true;
+  console.log('Acccion dialog :' +  this.mostrarDialogoEmpresa);
+}
+
+crearEmpresa() {
+  this.empresaService.postEmpresa(this.nuevaEmpresa).subscribe({
+    next: () => {
+        this.messageService.add({
+        severity: 'success',
+        summary: 'Éxito',
+        detail: 'Empresa creada con éxito',
+        life: 2500,  // en milisegundos
+        styleClass: 'mi-toast-custom'
+      });
+      this.mostrarDialogoEmpresa = false;
+      // Recarga la tabla si es necesario
+      this.cargarEmpresas();
+    },
+    error: (err) => { console.error('Error al crear empresa:', err);
+    this.messageService.add({
+      severity: 'error',
+        summary: 'Error',
+        detail: 'Hubo un error al crear la empresa',
+        life: 2500,  // en milisegundos
+        styleClass: 'mi-toast-custom'
+    })
+   }
+  });
+}
+
+  cargarEmpresas() {
+    this.empresaService.getEmpresas().subscribe((data) => {
+      this.empresas = data;
+    });
   }
 
-  onMoveToSource(event: any) {
-    console.log('Onchange event Source triggered');
-    console.log('Lista Source: ', this.source);
-    console.log('Elementos cambiados de Target a Source:', event, 'para la idEmpresa', this.idEmpresa);
-  }
-
-  onMoveToTarget(event: any) {
-    console.log('Onchange event Target triggered');
-    console.log('Lista Source en Target: ', this.source);
-    console.log('Lista Target: ', this.target);
-    console.log('Elementos cambiados de Source a Target:', event, 'para la idEmpresa', this.idEmpresa);
-  }
-*/
   hoverItem(event: MouseEvent) {
     const target = event.target as HTMLElement;
     target.style.backgroundColor = '#cc0000'; // Cambia el fondo cuando el mouse pasa

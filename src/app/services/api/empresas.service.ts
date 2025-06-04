@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { dematerialize, Observable } from "rxjs";
-import { EmpresaDTO } from "../../models/EmpresaDTO";
+import { EmpresaDTO , crearEmpresaDTO} from "../../models/EmpresaDTO";
 
 
 @Injectable({
@@ -9,7 +9,7 @@ providedIn : 'root'
 })
 export class EmpresaService{
 
-  private apiUrl = 'http://localhost:8081/empresas';
+  private apiUrl = 'http://localhost:9091/empresas';
 
 
   constructor(private http: HttpClient){}
@@ -24,12 +24,17 @@ export class EmpresaService{
     if(empresa.fechaAlta && !(empresa.fechaAlta instanceof Date)){
       empresa.fechaAlta = new Date (empresa.fechaAlta);
       console.log('fechaAlta: ', empresa.fechaAlta);
-    }
+   }
 
     if(empresa.fechaServidor && !(empresa.fechaServidor instanceof dematerialize))
-{ empresa.fechaServidor = new Date(empresa.fechaServidor);}
+      { empresa.fechaServidor = new Date(empresa.fechaServidor);}
 
-    return this.http.put<any>(`${this.apiUrl}/${idEmpresa}`, empresa);
+  return this.http.put<any>(`${this.apiUrl}/${idEmpresa}`, empresa);
+  }
+
+  //Crear una empresa
+  postEmpresa(empresa: crearEmpresaDTO): Observable<any> {
+    return this.http.post<any>(this.apiUrl, empresa);
   }
 
 

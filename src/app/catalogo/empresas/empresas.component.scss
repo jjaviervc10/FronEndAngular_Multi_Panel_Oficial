@@ -4,6 +4,41 @@ p-table{
   margin:20px 0;
   border-collapse: collapse;
 }
+p-dialog{
+  width: 100%;
+  margin:20px 0;
+  border-collapse: collapse;
+  background: white;
+}
+
+p-dialog label{
+  background: rgb(230, 215, 215);
+  text-align: center;//Alineación del texto
+  color:  #c74545;
+  border-radius: 5px;
+
+}
+
+:host ::ng-deep .p-dialog .p-dialog-content {
+  background-color: #f2f2f2; // Fondo claro personalizado
+  padding: 2rem;
+  color: #333;
+}
+
+:host ::ng-deep .p-dialog .p-dialog-footer {
+  background-color: #eee;
+  padding: 1rem;
+}
+
+
+:host ::ng-deep .p-dialog .p-dialog-header {
+  background-color: #c74545; // Fondo del header
+  color: #fff; // Texto blanco
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
 
 /*Estilos para las celdas de la tabla*/
 p-table  th, p-table td{
@@ -142,7 +177,7 @@ p-confirmdialog {
 .custom-confirm-popup {
   width: 700px;
   height: 700px;
-  background-color: rgb(187, 54, 54);
+  background-color: #c44242;
   border: 2px solid #f5c6cb;
   /* Agrega más estilos si es necesario */
 }
@@ -176,16 +211,52 @@ p-confirmdialog {
   line-height: 1.6 !important;
 }
 
-::ng-deep .ui-confirm-popup .ui-button {
-  background-color: #ff6347 !important;
+:host ::ng-deep .p-confirm-popup .p-confirm-popup-accept {
+  background-color: #28a745 !important; /* verde */
   color: white !important;
-  border-radius: 5px !important;
-  font-size: 14px !important;
-  padding: 10px 20px !important;
+  border-radius: 12px !important;
 }
+
+:host ::ng-deep .p-confirm-popup .p-confirm-popup-reject {
+  background-color: #dc3545 !important; /* rojo */
+  color: white !important;
+  border-radius: 12px !important;
+}
+
 
 ::ng-deep .ui-confirm-popup .pi-exclamation-triangle {
   font-size: 2rem !important;
   color: #ff6347 !important;
   margin-right: 10px !important;
 }
+
+//Estilos para message y toast
+// Estilo base del contenedor de todos los toasts
+::ng-deep .p-toast .mi-toast-custom {
+  border-radius: 10px;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 14px;
+  color: #333;
+}
+
+// Éxito
+::ng-deep .p-toast .mi-toast-custom.p-toast-message-success {
+  background-color: #d4edda !important;
+  border-left: 5px solid #28a745 !important;
+  color: #155724 !important;
+}
+
+// Error
+::ng-deep .p-toast .mi-toast-custom.p-toast-message-error {
+  background-color: #f8d7da !important;
+  border-left: 5px solid #dc3545 !important;
+  color: #721c24 !important;
+}
+
+// Advertencia
+::ng-deep .p-toast .mi-toast-custom.p-toast-message-warn {
+  background-color: #fff3cd !important;
+  border-left: 5px solid #ffc107 !important;
+  color: #856404 !important;
+}
+
