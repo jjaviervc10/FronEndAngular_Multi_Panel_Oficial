@@ -13,6 +13,9 @@ export class LoginComponent {
   username: string = '';  // Variable para el nombre de usuario
   password: string = '';  // Variable para la contraseña
 
+  mostrarCredenciales: boolean = false;
+
+
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -31,7 +34,7 @@ export class LoginComponent {
 
           // Aquí puedes guardar más detalles del usuario si es necesario
           localStorage.setItem('user_info', JSON.stringify(usuario));
-          
+
           // Redirigimos a la página de inicio
           this.router.navigate(['/inicio']);
         },

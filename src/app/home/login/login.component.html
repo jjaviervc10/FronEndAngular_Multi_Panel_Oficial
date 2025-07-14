@@ -24,4 +24,24 @@
 
   <!-- Asegúrate de que el botón tenga un label visible -->
   <button type="submit" label="submit" class="btn" styleClass="w-full" (click)="onLogin()">Iniciar sesión</button>
+
+   <!-- Toggle de credenciales -->
+  <div class="mt-3 text-center">
+    <p-toggleButton [(ngModel)]="mostrarCredenciales"
+                    onLabel="Ocultar credenciales"
+                    offLabel="Mostrar credenciales"
+                    onIcon="pi pi-eye-slash"
+                    offIcon="pi pi-eye">
+    </p-toggleButton>
+  </div>
+
+  <!-- Contenido condicional -->
+  <div *ngIf="mostrarCredenciales" class=" credenciales-container mt-2 p-3 border-round surface-100 text-left">
+    <strong>Credenciales de prueba:</strong>
+    <ul>
+      <li><strong>Usuario:</strong> Prueba</li>
+      <li><strong>Contraseña:</strong> HolaMundo05</li>
+    </ul>
+  </div>
+
 </div>

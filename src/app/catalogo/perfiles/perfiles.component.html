@@ -1,1 +1,117 @@
-<p>perfiles works!</p>
+<p-toast ></p-toast>
+
+<p-table [value]="perfiles" [responsive]="true" [paginator]="true" [rows]="10"
+  [dataKey]="'idPerfil'" editMode ="row">
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="idPerfil">Id Perfil<p-sortIcon field="idPerfil"></p-sortIcon></th>
+      <th pSortableColumn="nombrePerfil">Nombre Perfil <p-sortIcon field="nombrePerfil"></p-sortIcon></th>
+      <th pSortableColumn="descripcionPerfil"> Descripcion Perfil <p-sortIcon field="descripcionPerfil"></p-sortIcon></th>
+
+      <th style="color: white; ">
+        <button pButton pRipple type="button" label="Crear Perfil"  > </button>
+      </th>
+      <th>Perfil-Accesos</th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-perfil let-editing="editing" let-ri="roeIndex">
+   <tr [pEditableRow]="perfil">
+    <td>
+      <p-cellEditor>
+        <ng-template pTemplate="input">
+          <input pInputText type="text" [(ngModel)]="perfil.idPerfil">
+        </ng-template>
+        <ng-template pTemplate="output">
+          {{perfil.idPerfil}}
+        </ng-template>
+
+      </p-cellEditor>
+    </td>
+
+    <td>
+      <p-cellEditor>
+        <ng-template pTemplate="input">
+          <input pInputText type="text" [(ngModel)]="perfil.nombrePerfil">
+        </ng-template>
+
+        <ng-template pTemplate="output">
+          {{ perfil.nombrePerfil }}
+        </ng-template>
+      </p-cellEditor>
+    </td>
+    <td>
+      <p-cellEditor>
+        <ng-template pTemplate="input">
+          <input pInputText type="text" [(ngModel)]="perfil.descripcionPerfil">
+        </ng-template>
+
+        <ng-template pTemplate="output">
+          {{ perfil.descripcionPerfil }}
+        </ng-template>
+      </p-cellEditor>
+    </td>
+
+
+      <td>
+        <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(perfil)" class="p-button-rounded p-button-text"></button>
+        <button *ngIf="editing" pButton pRipple type="button" label="Guardar" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(perfil)" class="p-button-rounded p-button-text p-button-success mr-2"></button>
+        <button *ngIf="editing" pButton  pRipple type="button" label="Cancelar" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel()" class="p-button-rounded p-button-text p-button-danger"></button>
+
+<!-- Botón para eliminar empresa, usa el id de la empresa -->
+<button pButton label="Eliminar" icon="pi pi-trash" (click)="confirm($event, perfil.idPerfil)"></button>
+
+<!-- Popup de confirmación de PrimeNG -->
+    <p-confirmPopup #cp [target]="target" [message]="message" [icon]="icon"  class="custom-confirm-popup"
+    (accept)="onAccept()" (reject)="onReject()">
+      <ng-template #content let-message>
+        <div
+        class="flex flex-col items-center w-full gap-4 border-b border-surface-200 dark:border-surface-700 p-4 mb-4 pb-0"
+        >
+        <i  class="!text-6xl text-primary-500"></i>
+
+      </div>
+    </ng-template>
+  </p-confirmPopup>
+
+
+      </td>
+
+      <td>
+        <p-button label=" Accesos" (onClick)="mostrarDialogo(perfil.idPerfil)" icon="pi pi-user    "  class="p-button-rounded p-button-text"></p-button>   </td>
+
+
+    </ng-template>
+  </p-table>
+
+
+  <p-dialog header="Dialogo Accesos" [(visible)]="dialogoVisible" [style]="{width:'700px',hight: '700px', border:'2px solid #0f2027'}">
+
+  <p-footer style="display: flex; justify-content: center;align-items: center;">
+    <button type="button" class="p-button-rounded p-button-text" pButton label="Cerrar" icon="pi pi-times" (click)="dialogoVisible = false"></button>
+
+  </p-footer>
+
+  <p-pickList [source]="accesosDisponibles" [target]="accesosAsignados"
+  [style]="{backgroundColor: ' #4f9ab3'}"
+   [responsive]="true"
+   [showSourceFilter]="true"
+   [showSourceFilter]="true"
+   sourceHeader="Accesos disponibles" targetHeader="Accesos asignados"
+   (onChange)="onChange($event)"
+   (onMoveToSource)="onMoveToSource($event)"
+   (onMoveToTarget)="onMoveToTarget($event)">
+
+    <!-- Personaliza la visualización de cada ítem -->
+    <ng-template let-item pTemplate="item">
+      <div class="picklist-item" [ngClass]="{'selected': item.selected}"
+           (click)="toggleSelection(item)" (mouseover)="hoverItem($event)"
+           (mouseleave)="removeHover($event)"
+           style="font-weight: bold;font-size: 16px; display: flex; justify-content: center; align-items: center;">
+        {{ item.label }} <!-- Asegúrate de que 'label' esté correcto -->
+      </div>
+    </ng-template>
+
+  </p-pickList>
+
+</p-dialog>

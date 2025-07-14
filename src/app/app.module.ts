@@ -35,7 +35,7 @@ import { ConfirmPopupModule} from 'primeng/confirmpopup'
 import { DropdownModule } from 'primeng/dropdown';
 import { PerfilesComponent } from './catalogo/perfiles/perfiles.component';
 import { ToastModule } from 'primeng/toast';
-
+import { ToggleButtonModule } from 'primeng/togglebutton';
 
 @NgModule({
   declarations: [
@@ -73,6 +73,7 @@ import { ToastModule } from 'primeng/toast';
     ConfirmPopupModule,
     DropdownModule,
     ToastModule,
+     ToggleButtonModule,
 
   ],
   providers: [ConfirmationService,MessageService,AuthService, InactivityMonitorService],

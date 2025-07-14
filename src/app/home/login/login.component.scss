@@ -106,3 +106,31 @@ h2 {
 }
 
 
+::ng-deep .p-togglebutton {
+  color: white !important;
+
+  .p-button-icon-left {
+    color: white !important;
+  }
+
+  &.p-highlight {
+    color: white !important;
+
+    .p-button-icon-left {
+      color: white !important;
+    }
+  }
+}
+
+.credenciales-container {
+  color: white;
+
+  strong {
+    color: white;
+  }
+
+  li {
+    color: white;
+  }
+}
+

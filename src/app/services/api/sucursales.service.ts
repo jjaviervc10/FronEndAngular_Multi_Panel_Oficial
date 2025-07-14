@@ -7,7 +7,8 @@ import { SucursalDTO , crearSucursalDTO} from "../../models/SucursalDTO";
   providedIn : 'root'
 })
 export class SucursalService{
-  private apiUrl = 'http://localhost:9091/sucursales';
+  apiUrl = 'https://demobackendspringboot-production.up.railway.app/sucursales';
+  //private apiUrl = 'http://localhost:9091/sucursales';
 
   constructor(private http: HttpClient){}
 

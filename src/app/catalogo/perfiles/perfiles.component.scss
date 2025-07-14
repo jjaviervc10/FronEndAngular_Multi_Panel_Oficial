@@ -1,0 +1,220 @@
+p-table{
+  //border: 1px solid #080808;
+  width: 100%;
+  margin:20px 0;
+  border-collapse: collapse;
+}
+
+/*Estilos para las celdas de la tabla*/
+p-table  th, p-table td{
+  border:1px solid #080808 ; //Bordes alrededor de las celdas
+  padding:10px; //Espacio interno en las celdas
+  text-align:center;//alineación del texto
+}
+
+/*Estilos para las celdas de la cabecera*/
+p-table th{
+  background-color: #810909;//Color de fondo de para las cabeceras
+  font-weight: bold;//Negrita para los encabezados
+  text-align: center;//Alineación del texto
+}
+
+:host ::ng-deep th[pSortableColumn] {
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+:host ::ng-deep th{
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+:host ::ng-deep td{
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  font-family:'Times New Roman', Times, serif;
+}
+
+p-table tr:hover{
+  background-color: #f1f1f1;//Resaltado de la fila al pasar el ratón
+}
+
+
+p-table tr:hover{
+  background-color: #f1f1f1;//Resaltado de la fila al pasar el ratón
+}
+
+
+/*Estilos de los iconos en la tabla*/
+p-table tr{
+  background: linear-gradient(135deg, #0f2027, #4f9ab3, #2c5364);
+
+}
+p-sortIcon{
+  cursor: pointer;//Cambia el cursor al pasar sobre el icono
+}
+
+/*Estilos para los  botones*/
+button.p-button{
+  margin-right: 5px;
+}
+
+/* Aplica el color y formato a los encabezados Source y Target */
+:host ::ng-deep .p-picklist-header {
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+  color: #ffffff;  /* Color del texto */
+    background: #2c5364;
+
+}
+
+:host ::ng-deep .p-picklist-source .p-picklist-header {
+  color: #ece4e4;  /* Color del texto del encabezado Source */
+  background-color: #f1c40f;  /* Color de fondo para Source */
+}
+
+
+:host ::ng-deep .p-dialog-header{
+  font-weight: bold;
+  font-size: 16px;
+  color:#c44242;
+  background-color: #ebebeb;
+}
+
+:host ::ng-deep .p-picklist-sourceHeader .p-picklist-targetHeader{
+  color:#fdf6f6;
+}
+
+:host ::ng-deep .p-button-label{
+
+  font-weight: bold;
+  font-size: 16px;
+  color:#f5eeee;
+
+}
+
+:host ::ng-deep .p-button {
+  background-color: #c44242; /* Color de fondo */
+  color: #fff; /* Color del texto */
+  border-radius: 25px; /* Bordes redondeados */
+  border: 2px solid #c44242; /* Borde del botón */
+  font-weight: bold; /* Texto en negrita */
+  font-size: 14px; /* Tamaño de fuente */
+  padding: 5px 5px; /* Espaciado interno */
+  transition: all 0.3s ease; /* Transición suave */
+}
+
+p-dialog .p-footer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+p-dialog .p-footer .p-button{
+ margin:0;
+}
+
+.p-picklist-item:hover{
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+/* Resaltar item seleccionado */
+.p-picklist-item.p-highlight {
+  background-color: #f29c11 !important;
+  color: white;
+}
+
+/* Estilo para los elementos seleccionados en PickList */
+.selected {
+  background-color: #cc2a1f !important; /* Cambia el color de fondo del elemento seleccionado */
+  color: white; /* Cambia el color del texto */
+  border: 2px solid #f29c11; /* Agrega un borde para resaltar el elemento */
+}
+
+.custom-confirm-popup {
+  width: 700px;
+  height: 700px;
+  background-color: rgb(187, 54, 54);
+  border: 2px solid #f5c6cb;
+  /* Agrega más estilos si es necesario */
+}
+
+.custom-confirm-popup .p-confirm-popup-content {
+  /* Estilos específicos dentro del contenido de la ventana de confirmación */
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Otros estilos personalizados */
+}
+
+.custom-confirm-popup .p-confirm-popup-header {
+  /* Si deseas modificar el encabezado del popup */
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+::ng-deep .p-confirm-popup {
+  width: 300px;
+  height: 100px;
+  background-color: rgb(235, 72, 72);
+  border: 2px solid #f5c6cb;
+}
+
+::ng-deep .ui-confirm-popup .ui-confirm-popup-message {
+  font-size: 16px !important;
+  color: #e7cfcf !important;
+  font-family: 'Arial', sans-serif !important;
+  line-height: 1.6 !important;
+}
+
+::ng-deep .ui-confirm-popup .ui-button {
+  background-color: #ff6347 !important;
+  color: white !important;
+  border-radius: 5px !important;
+  font-size: 14px !important;
+  padding: 10px 20px !important;
+}
+
+::ng-deep .ui-confirm-popup .pi-exclamation-triangle {
+  font-size: 2rem !important;
+  color: #ff6347 !important;
+  margin-right: 10px !important;
+}
+
+//Estilos para message y toast
+// Estilo base del contenedor de todos los toasts
+::ng-deep .p-toast .mi-toast-custom {
+  border-radius: 10px;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 14px;
+  color: #333;
+}
+
+// Éxito
+::ng-deep .p-toast .mi-toast-custom.p-toast-message-success {
+  background-color: #d4edda !important;
+  border-left: 5px solid #28a745 !important;
+  color: #155724 !important;
+}
+
+// Error
+::ng-deep .p-toast .mi-toast-custom.p-toast-message-error {
+  background-color: #f8d7da !important;
+  border-left: 5px solid #dc3545 !important;
+  color: #721c24 !important;
+}
+
+// Advertencia
+::ng-deep .p-toast .mi-toast-custom.p-toast-message-warn {
+  background-color: #fff3cd !important;
+  border-left: 5px solid #ffc107 !important;
+  color: #856404 !important;
+}

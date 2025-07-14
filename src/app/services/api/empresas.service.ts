@@ -9,7 +9,8 @@ providedIn : 'root'
 })
 export class EmpresaService{
 
-  private apiUrl = 'http://localhost:9091/empresas';
+  private apiUrl = 'https://demobackendspringboot-production.up.railway.app/empresas';
+ // private apiUrl = 'http://localhost:9091/empresas';
 
 
   constructor(private http: HttpClient){}
