@@ -1,47 +1,44 @@
+<div class="login-wrapper">
+  <div pFocusTrap class="login-container">
+    <div class="form-group">
+      <p-iconfield class="login-form">
+        <div>
+          <p-inputicon class="logos">
+            <i class="pi pi-user"></i>
+          </p-inputicon>
+        </div>
+        <input class="custom-input" type="text" pInputText id="usuario" [(ngModel)]="username" placeholder="Usuario" />
+      </p-iconfield>
+    </div>
 
-<div pFocusTrap class="login-container">
-  <div class="form-group">
-    <p-iconfield class="login-form">
-      <div>
-        <p-inputicon class="logos">
-          <i class="pi pi-user"></i>
-        </p-inputicon>
-      </div>
-      <input class="custom-input" type="text" pInputText id="usuario" [(ngModel)]="username"  placeholder="Usuario" />
-    </p-iconfield>
+    <div class="form-group">
+      <p-iconfield class="login-form">
+        <div>
+          <p-inputicon class="logos">
+            <i class="pi pi-key"></i>
+          </p-inputicon>
+        </div>
+        <input class="custom-input" type="text" pInputText id="contraseña" [(ngModel)]="password" placeholder="Contraseña" />
+      </p-iconfield>
+    </div>
+
+    <button style="width: 200px;"  type="submit" label="submit" class="btn" styleClass="w-full" (click)="onLogin()">Iniciar sesión</button>
+
+    <div class="mt-3 text-center">
+      <p-toggleButton [(ngModel)]="mostrarCredenciales"
+                      onLabel="Ocultar credenciales"
+                      offLabel="Mostrar credenciales"
+                      onIcon="pi pi-eye-slash"
+                      offIcon="pi pi-eye">
+      </p-toggleButton>
+    </div>
+
+    <div *ngIf="mostrarCredenciales" class="credenciales-container mt-2 p-3 border-round surface-100 text-left">
+      <strong>Credenciales de prueba:</strong>
+      <ul>
+        <li><strong>Usuario:</strong> Prueba</li>
+        <li><strong>Contraseña:</strong> HolaMundo05</li>
+      </ul>
+    </div>
   </div>
-
-  <div class="form-group">
-    <p-iconfield class="login-form">
-      <div>
-        <p-inputicon class="logos">
-          <i class="pi pi-key"></i>
-        </p-inputicon>
-      </div>
-      <input class="custom-input" style="padding-left:20px;" type="text" pInputText id="contraseña" [(ngModel)]="password"  placeholder="Contraseña" />
-    </p-iconfield>
-  </div>
-
-  <!-- Asegúrate de que el botón tenga un label visible -->
-  <button type="submit" label="submit" class="btn" styleClass="w-full" (click)="onLogin()">Iniciar sesión</button>
-
-   <!-- Toggle de credenciales -->
-  <div class="mt-3 text-center">
-    <p-toggleButton [(ngModel)]="mostrarCredenciales"
-                    onLabel="Ocultar credenciales"
-                    offLabel="Mostrar credenciales"
-                    onIcon="pi pi-eye-slash"
-                    offIcon="pi pi-eye">
-    </p-toggleButton>
-  </div>
-
-  <!-- Contenido condicional -->
-  <div *ngIf="mostrarCredenciales" class=" credenciales-container mt-2 p-3 border-round surface-100 text-left">
-    <strong>Credenciales de prueba:</strong>
-    <ul>
-      <li><strong>Usuario:</strong> Prueba</li>
-      <li><strong>Contraseña:</strong> HolaMundo05</li>
-    </ul>
-  </div>
-
 </div>

@@ -1,111 +1,92 @@
-/* login.component.scss */
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Centra verticalmente */
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); /* opcional */
+  padding: 1rem;
+}
 
 .login-container {
-  display: flex;
-  flex-direction: column;  /* Distribute children vertically */
- justify-content: center;
-  margin: 400px auto;          /* Center the container horizontally */
+ display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
   max-width: 400px;
-  padding: 100px;           /* Add padding inside the container */
+  height: 400px; /* <--- altura fija para dar forma cuadrada */
+  margin: auto;
+  padding: 2rem;
+
   background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
   box-shadow: 0 8px 32px 0 rgba(23, 4, 192, 0.37);
-
-  backdrop-filter: blur( 4px );
+  backdrop-filter: blur(4px);
   border-radius: 20px;
 }
 
-/* Agrupar cada input de forma vertical */
 .form-group {
- display: flex;
-  border-radius: 20px;
-  flex-direction: column;
-  padding-bottom: 20px;
-  width: 100%;   /* Ensure that input fields take up full width */
-}
-
-/* Estilo para el checkbox y la etiqueta */
-.flex {
-  display: flex;
-  flex-direction: row;  /* Arrange checkbox and label in a row (horizontal) */
-  gap: 10px;            /* Add space between checkbox and label */
-  align-items: center;  /* Align checkbox and label in the center */
+  width: 100%;
+  margin-bottom: 1.5rem;
 }
 
 .login-form {
+  display: flex;
+  align-items: center;
   width: 100%;
-  max-width: 400px;
-  padding: 2rem;
-  border-radius: 8px;
-  display:contents;
-  align-items: center; /* Centra verticalmente el ícono y el input */
-  justify-content: center; /* Centra horizontalmente el ícono y el input */
+  gap: 0.5rem;
 }
 
-h2 {
-  text-align: center;
-  margin-bottom: 20px;
+.logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: white;
+  padding: 0 0.5rem;
 }
 
-.form-group {
-  margin-bottom: 15px;
-}
-
-.form-control {
-  width: 100%;
-  padding: 10px;
+.custom-input {
+  flex: 1;
+  height: 40px;
+  padding: 0.5rem;
+  font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 4px;
+  min-width: 0;
 }
 
 .btn {
-  width: auto;
-  padding: 25px;
-  background-color:  #99a8b8;
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #99a8b8;
   color: black;
-  font-size: 16px;
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 1rem;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-}
-
-
-.p-button-label {
-  color: black !important; /* Define el color del texto en el botón */
-  font-size: 16px;
+  margin-top: 1rem;
 }
 
 .btn:hover {
   background-color: #1b68f8;
 }
 
-.input{
-  display: flex;
-  justify-content: center;  /* Centra el contenido horizontalmente */
-  align-items: center;
-}
-.logos {
-  display: flex;
-  justify-content: center;  /* Centra el contenido horizontalmente */
-  align-items: center;      /* Centra el contenido verticalmente */
-  height: 100%;
-  font-size:2rem;            /* Asegura que el div ocupe todo el alto disponible */
-   padding-bottom: 20px;
-   padding-top: 20px;
-   color: white;
+.credenciales-container {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  margin-top: 1rem;
 
+  strong,
+  li {
+    color: white;
+  }
 }
 
-.custom-input {
-  width: 400px; /* Cambia el tamaño como desees */
-  height: 40px;
-  font-size: 1.1rem;
-  padding: 8px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-}
-
-
+/* ToggleButton blanco */
 ::ng-deep .p-togglebutton {
   color: white !important;
 
@@ -122,15 +103,17 @@ h2 {
   }
 }
 
-.credenciales-container {
-  color: white;
-
-  strong {
-    color: white;
+/* RESPONSIVE: Mejorar tipografía y tamaños en pantallas grandes */
+@media (min-width: 768px) {
+  .login-container {
+    padding: 3rem;
   }
 
-  li {
-    color: white;
+  .custom-input {
+    font-size: 1.1rem;
+  }
+
+  .btn {
+    font-size: 1.1rem;
   }
 }
-
